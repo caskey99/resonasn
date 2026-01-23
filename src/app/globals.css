@@ -3,6 +3,7 @@
   --secondary-color: #171717;
   --text-color: #444444;
   --bg-color: #ffffff;
+  --cursor-color: #999999;
   
   /* Шрифты будут инжектиться через Next.js Font Optimization */
   --font-basis: sans-serif; 
@@ -13,6 +14,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -webkit-tap-highlight-color: transparent; /* Убирает синюю подсветку на тач-устройствах */
 }
 
 html,
@@ -24,19 +26,30 @@ body {
   background: var(--bg-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  cursor: none !important;
+}
+
+/* Скрываем курсор на всех интерактивных элементах */
+button, input, textarea, .cursor-pointer {
+  cursor: none !important;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  cursor: none !important; /* Дублируем для надежности */
 }
 
 ul, ol {
   list-style: none;
 }
 
-/* Утилиты для скрытия скроллбара, но сохранения функционала (если понадобится) */
+#ball {
+  pointer-events: none;
+}
+
+/* Утилиты для скрытия скроллбара */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -45,8 +58,29 @@ ul, ol {
   scrollbar-width: none;
 }
 
-/* Класс для плавного скролла (будет использоваться JS-плагином) */
+/* Класс для контейнера плавного скролла */
 .smooth-scroll {
   overflow: hidden;
   height: 100%;
+}
+
+/* --- Lenis Scroll (Обязательные стили для плавного скролла) --- */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

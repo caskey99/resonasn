@@ -8,30 +8,31 @@ import PageNavigation from '@/components/layout/PageNavigation/PageNavigation';
 
 export default function Home() {
   const data = getPortfolioData();
-  const featuredPosts = data.blog.slice(0, 3); // Берем 3 последних поста
+  const featuredPosts = data.blog.slice(0, 3);
 
   return (
     <>
       <Hero />
       
+      {/* Главный контейнер контента (как в base.html -> index.html) */}
       <div id="main-content" className="portfolio-page">
         <div id="main-page-content" className="content-max-width">
           
-          {/* Сетка портфолио */}
+          {/* 1. Сетка портфолио (уже содержит свои wrapper-ы) */}
           <PortfolioGrid items={data.portfolio} />
           
-          {/* Секция "О нас" */}
+          {/* 2. Секция "О нас" */}
           <AboutSection />
           
-          {/* Параллакс блок */}
+          {/* 3. Параллакс блок */}
           <ShowcaseParallax />
           
-          {/* Новости блога */}
+          {/* 4. Блог */}
           <BlogPreview posts={featuredPosts} />
           
         </div>
 
-        {/* Навигация на следующую страницу (Footer Link) */}
+        {/* Навигация на следующую страницу */}
         <PageNavigation />
       </div>
     </>

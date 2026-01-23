@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import Script from 'next/script';
 import './globals.css';
 import Header from '@/components/layout/Header/Header';
 import { getPortfolioData } from '@/lib/data';
+import SmoothScroll from '@/components/ui/SmoothScroll';
+import MagicCursor from '@/components/ui/MagicCursor';
 
-// Настройка шрифтов (примерная, пути должны совпадать с папкой public)
 const basisGrotesque = localFont({
   src: [
     { 
@@ -38,44 +38,26 @@ export default function RootLayout({
   return (
     <html lang="ru" className={basisGrotesque.variable}>
       <head>
-        {/* Подключаем FontAwesome (легаси) */}
+        {/* Оставляем CSS для верстки, но удаляем JS */}
         <link rel="stylesheet" href="/static/css/all.min.css" />
+        <link rel="stylesheet" href="/static/css/style.css" /> 
+        <link rel="stylesheet" href="/static/css/showcase.css" />
+        <link rel="stylesheet" href="/static/css/portfolio.css" />
       </head>
-      <body className="smooth-scroll">
-        
-        {/* Шапка сайта */}
-        <Header menuItems={data.menu} settings={data.settings} />
+      <body>
+        <SmoothScroll>
+            {/* Хедер пока без анимации скролла, просто рендерим */}
+            <MagicCursor />
+            <Header menuItems={data.menu} settings={data.settings} />
 
-        {/* Контент страниц */}
-        <main id="main">
-            {children}
-        </main>
+            <main id="main">
+                {children}
+            </main>
 
-        {/* === LEGACY SCRIPTS === */}
-        {/* Важно соблюдать порядок загрузки, как в base.html */}
-        
-        {/* 1. jQuery (Критичен для всего) */}
-        <Script 
-          src="https://code.jquery.com/jquery-3.6.0.min.js" 
-          strategy="beforeInteractive" 
-        />
-        
-        {/* 2. Вспомогательные библиотеки */}
-        <Script src="/static/js/modernizr.js" strategy="afterInteractive" />
-        <Script src="/static/js/jquery.waitforimages.js" strategy="afterInteractive" />
-        <Script src="/static/js/appear.js" strategy="afterInteractive" />
-        <Script src="/static/js/jquery.magnific-popup.min.js" strategy="afterInteractive" />
-        
-        {/* 3. Анимации (GSAP) */}
-        <Script src="/static/js/gsap.min.js" strategy="afterInteractive" />
-        <Script src="/static/js/scrollmagic.min.js" strategy="afterInteractive" />
-        <Script src="/static/js/scrolltrigger.min.js" strategy="afterInteractive" />
-        
-        {/* 4. WebGL и основные скрипты проекта */}
-        {/* Загружаем лениво, чтобы React успел отрисовать DOM */}
-        <Script src="/static/js/clapatwebgl.js" strategy="lazyOnload" />
-        <Script src="/static/js/scripts.js" strategy="lazyOnload" />
-        
+            <footer id="footer-container">
+               {/* Footer */}
+            </footer>
+        </SmoothScroll>
       </body>
     </html>
   );

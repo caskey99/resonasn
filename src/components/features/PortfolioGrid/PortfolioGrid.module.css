@@ -1,114 +1,161 @@
+/* Основной контейнер */
 .sectionWrapper {
   background-color: #eee;
-  position: relative;
   width: 100%;
+  position: relative;
   z-index: 10;
+  overflow: hidden; /* Важно для flex-grid */
 }
 
 .container {
-  max-width: 1280px;
   width: 100%;
+  max-width: 100%; /* Во всю ширину */
   margin: 0 auto;
-  padding-bottom: 8vw; /* row_padding_bottom */
+  padding: 0 70px; /* Отступы как в оригинале (padding: 0 70px) */
   box-sizing: border-box;
-}
-
-.itemsWrapper {
-  position: relative;
-  width: 100%;
 }
 
 .portfolioWrap {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
   position: relative;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 10vh;
 }
 
+/* Flex Grid Container */
 .portfolio {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: flex; /* В ряд */
+  flex-wrap: nowrap; /* Не переносить на новую строку (на десктопе) */
   justify-content: space-between;
-}
-
-/* Стили для карточки */
-.item {
-  width: 48%; /* one_half по умолчанию */
-  margin-bottom: 120px;
-  position: relative;
+  margin: 20px 0;
   box-sizing: border-box;
 }
 
-/* Широкие карточки (на всю ширину или специфичный размер) */
-.wide {
-  width: 60%; /* Примерно, настроим точнее в медиа-запросах */
-}
-
-/* Для выравнивания сетки как в оригинале: 
-   1 (Wide) - 2 (Small) 
-   3 (Wide) - 4 (Wide) - это условная схема, в оригинале JS Isotope управляет этим, 
-   но мы сделаем CSS-фоллбек 
-*/
-
-/* Внутренности карточки */
-.itemContent {
+/* Карточка проекта */
+.item {
   position: relative;
-  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  margin: 0 10px; /* Отступы между элементами */
+  height: 32vw; /* Высота из оригинала */
+  
+  /* Логика ширины (Аккордеон) */
+  flex-grow: 1;
+  width: 30%; /* Базовая ширина (3 * 1/10 * 100%) */
+  transition: width 0.6s cubic-bezier(0.38, 0.005, 0.215, 1), opacity 0.3s ease;
   overflow: hidden;
   cursor: pointer;
 }
 
-.itemImageWrap {
-  position: relative;
+/* При наведении карточка расширяется */
+.item:hover {
+  width: 80%; /* Расширенная ширина (8 * 1/10 * 100%) */
+}
+
+/* Внутренний контейнер картинки */
+.itemContent {
   width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.itemWrapImage {
+  width: 100%;
+  height: 100%;
+  position: relative;
   overflow: hidden;
-  transform: scale(1.05); /* Для parallax эффекта */
-  transition: transform 0.5s ease;
 }
 
 .itemImage {
   width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 0.3s ease;
-}
-
-.itemVideo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: 0;
+  object-fit: cover; /* Заполняет блок */
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.38, 0.005, 0.215, 1);
 }
 
-/* Заголовки */
+/* Тексты (появляются при наведении) */
 .itemCaption {
-  margin-top: 25px;
-  position: relative;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0; /* Скрыто по умолчанию */
+  transform: translateY(20px);
+  transition: all 0.3s ease;
 }
 
 .itemTitle {
   font-size: 24px;
   font-weight: 500;
-  color: #000;
+  color: #fff; /* Белый текст на картинке */
   margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 .itemCategory {
   font-size: 14px;
-  color: #666;
+  color: rgba(255,255,255,0.7);
   text-transform: uppercase;
+}
+
+/* Эффект: Показываем текст только на активном элементе */
+.item:hover .itemCaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Затемнение неактивных элементов (опционально, есть в оригинале через JS, тут через CSS) */
+.portfolio:hover .item:not(:hover) {
+  opacity: 0.5;
+}
+
+/* Видео */
+.heroVideoWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bgvid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Адаптив */
 @media (max-width: 1024px) {
-  .container { padding: 0 40px 8vw; }
-  .item, .wide { width: 100%; margin-bottom: 80px; }
+  .container {
+    padding: 0 30px;
+  }
+  
+  .portfolio {
+    flex-wrap: wrap; /* На планшетах переносим */
+  }
+  
+  .item {
+    width: calc(50% - 20px) !important; /* 2 в ряд */
+    height: 40vw;
+    margin-bottom: 30px;
+  }
+  
+  .itemCaption {
+    opacity: 1; /* Всегда показываем текст на мобилках */
+    transform: translateY(0);
+  }
 }
 
-@media (max-width: 768px) {
-  .container { padding: 0 20px 10vw; }
+@media (max-width: 600px) {
+  .item {
+    width: 100% !important; /* 1 в ряд */
+    height: 70vw;
+    margin: 0 0 20px 0;
+  }
 }

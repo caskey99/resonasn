@@ -1,0 +1,148 @@
+/* --- Show Filters Button --- */
+.showFilters {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  z-index: 100;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: initial;
+}
+
+.openFilters {
+  width: 60px;
+  height: 60px;
+  background: #000; /* Цвет кнопки */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.showFilters:hover .openFilters {
+  transform: scale(1.1);
+}
+
+/* --- Filters Overlay --- */
+.filtersOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filtersOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filtersContent {
+  text-align: center;
+}
+
+.filterLink {
+  display: block;
+  font-size: 32px;
+  font-weight: 600;
+  color: #999;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-transform: uppercase;
+}
+
+.filterLink:hover, .filterLink.active {
+  color: #000;
+  transform: scale(1.05);
+}
+
+.closeFilters {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* --- Grid Layout --- */
+.sectionWrapper {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: #fff; /* Фон как в оригинале */
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 колонки по умолчанию */
+  gap: 40px; /* Отступы между проектами */
+}
+
+/* Элементы сетки */
+.item {
+  position: relative;
+  width: 100%;
+}
+
+.itemImageWrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.itemImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.item:hover .itemImage {
+  transform: scale(1.05);
+}
+
+.itemTitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.itemCategory {
+  font-size: 14px;
+  color: #999;
+  margin-top: 5px;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* 1 колонка на мобильных */
+  }
+  .showFilters {
+    bottom: 20px;
+    right: 20px;
+  }
+}

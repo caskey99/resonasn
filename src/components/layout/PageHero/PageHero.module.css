@@ -1,0 +1,41 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee; /* Цвет фона как в оригинале */
+  overflow: hidden;
+  padding-top: 80px; /* Отступ под фиксированный хедер */
+}
+
+.inner {
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  opacity: 1; /* Можно добавить анимацию появления */
+}
+
+.title {
+  font-size: 8vw;
+  line-height: 9vw;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.caption {
+  font-size: 14px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #666;
+}
+
+@media (max-width: 1024px) {
+  .title { font-size: 12vw; line-height: 13vw; }
+  .hero { height: 50vh; }
+}

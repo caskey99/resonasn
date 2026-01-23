@@ -1,0 +1,196 @@
+{
+  "portfolio": [
+    {
+      "id": "project-1",
+      "title": "London Royal Theatre",
+      "title_spaces": "London Royal Theatre",
+      "subtitle": "2022Brand Identity",
+      "year": "2022",
+      "category_display": "Брендинг",
+      "categories": ["branding", "design"],
+      "services": ["User Experience Design", "Content Strategy", "Visual design", "Technical discovery and development", "Quality assurance testing"],
+      "visit_link": "#",
+      "visit_link_text": "ПЕРЕЙТИ",
+      "has_video": false,
+      "image": "/static/images/01hero.jpg",
+      "background_color": "#ffffff",
+      "navigation_color": "#de2606",
+      "thumbnail_size": "medium",
+      "overview": "Мы создаем уникальные цифровые решения, которые помогают бизнесу выделяться и оставаться актуальными для своих клиентов.",
+      "description": "Наш подход к дизайну основан на глубоком понимании потребностей пользователей и бизнес-целей клиентов. Мы разрабатываем интуитивные и привлекательные цифровые платформы, которые эффективно служат пользователям.\n\nКаждый проект начинается с исследования и анализа, что позволяет нам создавать решения, которые не только красивы, но и функциональны. Мы используем современные технологии и лучшие практики индустрии.",
+      "images": [
+        {"src": "/static/images/01hero.jpg", "title": "Заголовок изображения", "caption": "Подпись к изображению"},
+        {"src": "/static/images/03hero.jpg", "title": "Image Title", "caption": "Image Caption Here"},
+        {"src": "/static/images/04hero.jpg", "title": "Image Title", "caption": "Image Caption Here"}
+      ],
+      "final_section": {
+        "title": "Мы помогаем бизнесу внедрять инновации и оставаться актуальными для клиентов, разрабатывая передовые цифровые продукты и создавая умную и ценную коммуникацию",
+        "images": [
+          {"src": "/static/images/01hero.jpg", "title": "Image Title"},
+          {"src": "/static/images/03hero.jpg", "title": "Image Title"},
+          {"src": "/static/images/04hero.jpg", "title": "Image Title"}
+        ]
+      }
+    },
+    {
+      "id": "project-2",
+      "title": "Font Porlane",
+      "subtitle": "2022Brand Identity",
+      "year": "2022",
+      "category_display": "Брендинг",
+      "categories": ["branding", "design"],
+      "has_video": false,
+      "image": "/static/images/03hero.jpg",
+      "background_color": "#ffffff",
+      "navigation_color": "#462883",
+      "thumbnail_size": "large",
+      "content": "<div class='content-full-width'><div class='inner'><p>Проект дизайна цифрового опыта, сфокусированный на пользовательском интерфейсе и дизайне взаимодействия.</p><p>Наша цель — создать интуитивную и привлекательную цифровую платформу, которая эффективно служит пользователям.</p></div></div>"
+    },
+    {
+      "id": "project-3",
+      "title": "Moon Purple Dust",
+      "subtitle": "2022Brand Identity",
+      "year": "2022",
+      "category_display": "Брендинг",
+      "categories": ["design", "photo"],
+      "has_video": false,
+      "image": "/static/images/04hero.jpg",
+      "background_color": "#171717",
+      "navigation_color": "#462883",
+      "thumbnail_size": "large",
+      "content": "<div class='content-full-width'><div class='inner'><p>Портфолио фотографа, демонстрирующее художественные работы и профессиональные проекты.</p></div></div>"
+    },
+    {
+      "id": "project-4",
+      "title": "Listen Everything",
+      "subtitle": "2022Brand Identity",
+      "year": "2022",
+      "category_display": "Брендинг",
+      "categories": ["branding", "design"],
+      "has_video": false,
+      "image": "/static/images/05hero.jpg",
+      "background_color": "#ffffff",
+      "navigation_color": "#000",
+      "thumbnail_size": "medium",
+      "content": "<div class='content-full-width'><div class='inner'><p>Полный редизайн брендинга для современной технологической компании.</p></div></div>"
+    },
+    {
+      "id": "project-5",
+      "title": "Hotel Room",
+      "subtitle": "2022Brand Identity",
+      "year": "2022",
+      "category_display": "Брендинг",
+      "categories": ["video"],
+      "has_video": false,
+      "image": "/static/images/01hero.jpg",
+      "background_color": "#ffffff",
+      "navigation_color": "#000",
+      "thumbnail_size": "medium",
+      "content": "<div class='content-full-width'><div class='inner'><p>Полный редизайн брендинга для современной технологической компании.</p></div></div>"
+    },
+    {
+      "id": "project-6",
+      "title": "Liquify Typography",
+      "subtitle": "2022Design",
+      "year": "2022",
+      "category_display": "Дизайн",
+      "categories": ["design"],
+      "has_video": false,
+      "image": "/static/images/03hero.jpg",
+      "background_color": "#ffffff",
+      "navigation_color": "#70261b",
+      "thumbnail_size": "large",
+      "content": "<div class='content-full-width'><div class='inner'><p>Портфолио фотографа, демонстрирующее художественные работы и профессиональные проекты.</p></div></div>"
+    },
+    {
+      "id": "project-7",
+      "title": "Orenda Coffee",
+      "subtitle": "2022Design",
+      "year": "2022",
+      "category_display": "Дизайн",
+      "categories": ["design"],
+      "has_video": false,
+      "image": "/static/images/04hero.jpg",
+      "background_color": "#171717",
+      "navigation_color": "#70261b",
+      "thumbnail_size": "large",
+      "content": "<div class='content-full-width'><div class='inner'><p>Портфолио фотографа, демонстрирующее художественные работы и профессиональные проекты.</p></div></div>"
+    },
+    {
+      "id": "project-8",
+      "title": "Only Opulence",
+      "subtitle": "2022Design",
+      "year": "2022",
+      "category_display": "Дизайн",
+      "categories": ["design"],
+      "has_video": true,
+      "video_mp4": "https://keepgrading.cdn.prismic.io/keepgrading/4cc5e758-b802-4063-9790-dd5dd278f346_G2_MP.mp4",
+      "video_webm": "https://keepgrading.cdn.prismic.io/keepgrading/ba4f9e29-6acc-4993-9ce3-8eb9261f414b_G2_WEBM.webm",
+      "image": "/static/images/05hero.jpg",
+      "background_color": "#171717",
+      "navigation_color": "#70261b",
+      "thumbnail_size": "large",
+      "content": "<div class='content-full-width'><div class='inner'><p>Портфолио фотографа, демонстрирующее художественные работы и профессиональные проекты.</p></div></div>"
+    }
+  ],
+  "blog": [
+    {
+      "id": "post-1",
+      "title": "Коллекция работ",
+      "date": "14 марта 2022",
+      "categories": ["Стажировка", "Проекты", "Агентство"],
+      "image": "/static/images/news01.jpg",
+      "content": "<p>Здесь содержимое статьи блога. Это пример статьи блога с некоторым контентом для демонстрации функциональности блога.</p>"
+    },
+    {
+      "id": "post-2",
+      "title": "Сайт года",
+      "date": "14 марта 2022",
+      "categories": ["Стажировка", "Проекты", "Агентство"],
+      "image": "/static/images/news02.jpg",
+      "content": "<p>Еще одна статья блога с другим содержанием и категориями.</p>"
+    },
+    {
+      "id": "post-3",
+      "title": "Процесс дизайна",
+      "date": "14 марта 2022",
+      "categories": ["Стажировка", "Проекты", "Агентство"],
+      "image": "/static/images/news03.jpg",
+      "content": "<p>Еще одна статья блога с другим содержанием и категориями.</p>"
+    }
+  ],
+  "menu": [
+    {
+      "title": "Главная",
+      "url": "/"
+    },
+    {
+      "title": "Портфолио",
+      "url": "/portfolio"
+    },
+    {"title": "О нас", "url": "/about"},
+    {"title": "Контакты", "url": "/contact"},
+    {
+      "title": "Еще",
+      "url": "#",
+      "submenu": [
+        {"title": "Блог", "url": "/blog"}
+      ]
+    }
+  ],
+  "settings": {
+    "primary_color": "#000000",
+    "logo": "/static/images/logo.png",
+    "logo_light": "/static/images/logo-white.png",
+    "enable_preloader": true,
+    "preloader_text": "Пожалуйста, подождите",
+    "preloader_intro": "смелый,храбрый,знаковый,простой,громче",
+    "preloader_hover_first": "Останься",
+    "preloader_hover_second": "Расслабься",
+    "enable_magic_cursor": true,
+    "menu_btn_caption": "Меню",
+    "back_to_top_caption": "Наверх",
+    "footer_copyright": "© 2024 Harington. Все права защищены."
+  }
+}
+

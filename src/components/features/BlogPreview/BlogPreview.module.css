@@ -1,0 +1,79 @@
+.section {
+  padding: 100px 0;
+  background-color: #eee;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.header {
+  margin-bottom: 60px;
+}
+
+.subtitle {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.bigTitle {
+  font-size: 6vw;
+  line-height: 7vw;
+  font-weight: 500;
+  color: #000;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Post Styles */
+.post {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.postTitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+  width: 60%;
+  position: relative;
+  z-index: 5;
+}
+
+.postMeta {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* Footer текст */
+.footerText {
+  margin-top: 80px;
+  width: 40%;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.buttonBox {
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .post { flex-direction: column; }
+  .postTitle { width: 100%; margin-bottom: 10px; }
+  .postMeta { width: 100%; justify-content: flex-start; }
+  .footerText { width: 100%; }
+}

@@ -1,0 +1,21 @@
+.navWrapper {
+  background-color: #eee;
+  padding: 100px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 6vw;
+  line-height: 7vw;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+}

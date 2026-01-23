@@ -1,0 +1,131 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heroStyles {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.heroCaption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.inner {
+  padding: 0 80px;
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.heroTitleWrapper {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.heroTitle {
+  font-size: 8vw;
+  line-height: 9vw;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.heroTitle span {
+  display: inline-block; /* Важно для анимации появления */
+  margin: 0 1vw;
+}
+
+.heroSubtitleWrapper {
+  overflow: hidden;
+  margin-top: 2vh;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #444;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Footer (Scroll Down & Case Counter) */
+.heroFooter {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  box-sizing: border-box;
+  z-index: 20;
+}
+
+.scrollDown {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.scrollIcon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.scrollDown:hover .scrollIcon {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+.scrollText {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.heroFooterRight {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+  .heroTitle { font-size: 10vw; line-height: 11vw; }
+  .inner, .heroFooter { padding: 0 40px; }
+}
+
+@media (max-width: 768px) {
+  .heroTitle { font-size: 14vw; line-height: 15vw; }
+  .inner, .heroFooter { padding: 0 20px; }
+  .heroSubtitle { font-size: 1rem; }
+  .scrollText { display: none; } /* Скрываем текст "Scroll" на мобильных */
+}

@@ -1,0 +1,114 @@
+.sectionWrapper {
+  background-color: #eee;
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 8vw; /* row_padding_bottom */
+  box-sizing: border-box;
+}
+
+.itemsWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.portfolioWrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+}
+
+.portfolio {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Стили для карточки */
+.item {
+  width: 48%; /* one_half по умолчанию */
+  margin-bottom: 120px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Широкие карточки (на всю ширину или специфичный размер) */
+.wide {
+  width: 60%; /* Примерно, настроим точнее в медиа-запросах */
+}
+
+/* Для выравнивания сетки как в оригинале: 
+   1 (Wide) - 2 (Small) 
+   3 (Wide) - 4 (Wide) - это условная схема, в оригинале JS Isotope управляет этим, 
+   но мы сделаем CSS-фоллбек 
+*/
+
+/* Внутренности карточки */
+.itemContent {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.itemImageWrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transform: scale(1.05); /* Для parallax эффекта */
+  transition: transform 0.5s ease;
+}
+
+.itemImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.itemVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Заголовки */
+.itemCaption {
+  margin-top: 25px;
+  position: relative;
+}
+
+.itemTitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.itemCategory {
+  font-size: 14px;
+  color: #666;
+  text-transform: uppercase;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+  .container { padding: 0 40px 8vw; }
+  .item, .wide { width: 100%; margin-bottom: 80px; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 20px 10vw; }
+}

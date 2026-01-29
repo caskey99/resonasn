@@ -5,7 +5,13 @@
   width: 100%;
   height: 120px;
   z-index: 10000;
-  transition: background 0.4s ease-in-out;
+  /* Добавили transform в анимацию для плавного скрытия */
+  transition: background 0.79s ease-in-out, transform 0.79s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+/* Класс для скрытия хедера (уезжает вверх) */
+.headerHidden {
+  transform: translateY(-100%);
 }
 
 .scrolled {
@@ -39,14 +45,6 @@
 
 .logoBlack {
   opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.logoWhite {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
   transition: opacity 0.3s ease;
 }
 

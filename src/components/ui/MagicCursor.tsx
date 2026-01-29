@@ -57,9 +57,13 @@ export default function MagicCursor() {
     // Логика наведения (Hover Effects) - Портировано из common.js
     const onMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+
+      const customHover = target.closest('[data-cursor="hover"]');
       
       // Определяем тип элемента
       // В common.js: ".link, .button"
+
+      
       const isLink = target.closest('a') || target.closest('button') || target.closest('.link') || target.closest('.button');
       
       // В common.js: ".hide-ball"
@@ -67,6 +71,9 @@ export default function MagicCursor() {
       
       // В common.js: ".parallax-wrap"
       const isParallax = target.closest('.parallax-wrap');
+
+      console.log("customHover", isParallax, isHidden, isLink, customHover,)
+
 
       if (!cursorRef.current) return;
 

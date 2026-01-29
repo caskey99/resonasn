@@ -1,39 +1,55 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useLayoutEffect, useState } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollContext from '@/context/ScrollContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
-  useEffect(() => {
-    const lenis = new Lenis({
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+
+  useLayoutEffect(() => {
+    // 1. Инициализация Lenis
+    const lenisInstance = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Ease Out Quart
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       touchMultiplier: 2,
     });
 
-    // Синхронизируем Lenis и GSAP
-    lenis.on('scroll', ScrollTrigger.update);
+    setLenis(lenisInstance);
 
-    // Добавляем Lenis в тик GSAP
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    // 2. Синхронизация: обновляем ScrollTrigger при скролле Lenis
+    lenisInstance.on('scroll', ScrollTrigger.update);
 
+    // 3. Интеграция в GSAP Ticker
+    // Важно: создаем именованную функцию для корректного удаления
+    const update = (time: number) => {
+      lenisInstance.raf(time * 1000);
+    };
+
+    // Отключаем встроенную задержку GSAP для синхронности
     gsap.ticker.lagSmoothing(0);
+    
+    // Добавляем слушатель
+    gsap.ticker.add(update);
 
-    // Очистка при размонтировании
+    // 4. Cleanup Function
     return () => {
-      lenis.destroy();
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      gsap.ticker.remove(update);
+      lenisInstance.destroy();
+      setLenis(null);
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <ScrollContext.Provider value={{ lenis }}>
+      {children}
+    </ScrollContext.Provider>
+  );
 }

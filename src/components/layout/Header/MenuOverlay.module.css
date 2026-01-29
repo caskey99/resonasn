@@ -1,0 +1,54 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #171717; /* Цвет из menu.html */
+  z-index: 9998; /* Чуть ниже хедера, но выше контента */
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Обертка для маскирования текста (overflow: hidden критичен) */
+.linkWrapper {
+  overflow: hidden;
+  position: relative;
+  padding: 0 10px;
+}
+
+.navLink {
+  display: block;
+  font-family: var(--font-basis), sans-serif;
+  font-size: 48px; /* Крупный размер как в премиум сайтах */
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  transform: translateY(120%); /* Начальное состояние: скрыто внизу */
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #999; /* Или primary color */
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .navLink {
+    font-size: 32px;
+  }
+}

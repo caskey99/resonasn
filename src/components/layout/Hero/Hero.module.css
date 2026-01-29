@@ -26,9 +26,13 @@
 }
 
 .inner {
-  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 60px;
   box-sizing: border-box;
-  max-width: 1280px;
+  width: 100%;
+  /* max-width: 1280px; */
   margin: 0 auto;
 }
 
@@ -39,6 +43,8 @@
 
 .heroTitle {
   font-size: 8vw;
+  display: flex;
+  flex-direction: column;
   line-height: 9vw;
   font-weight: 500;
   color: #000;
@@ -46,9 +52,14 @@
   text-transform: uppercase;
 }
 
-.heroTitle span {
-  display: inline-block; /* Важно для анимации появления */
-  margin: 0 1vw;
+.herotitleSpan {
+  font-size: 9vw;
+  display: block; /* Важно для анимации появления */
+  width: fit-content;
+  padding: 0 !important;
+  /* line-height: 0.75; */
+  /* line-height: 0.65; */
+  margin-left: -0.05em;
 }
 
 .heroSubtitleWrapper {
@@ -56,15 +67,27 @@
   margin-top: 2vh;
 }
 
+.heroSubtitleWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+}
+
 .heroSubtitle {
-  font-size: 1.2rem;
+  font-size: 14px !important;
+  display: flex;
+  align-items: center;
   font-weight: 400;
   color: #444;
   margin: 0;
   line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 260px;
+  text-transform: uppercase;
+  line-height: 20px;
+  text-align: left;
+  margin-right: 40px;
 }
+
 
 /* Footer (Scroll Down & Case Counter) */
 .heroFooter {
@@ -112,9 +135,10 @@
 }
 
 .heroFooterRight {
-  font-size: 12px;
-  font-weight: 600;
-  color: #888;
+     font-weight: 400;
+    font-size: 14px;
+    line-height: 60px;
+    color:#222;
 }
 
 /* Адаптив */

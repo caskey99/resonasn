@@ -15,17 +15,20 @@ export default function Hero() {
             <div className={styles.heroTitleWrapper}>
               {/* Ставим классы, которые ожидает JS (hero-title) */}
               <h1 className={`${styles.heroTitle} hero-title`}>
-                <span>Digital</span>
-                <span>Creative</span>
-                <span>Studio</span>
+                <span className={styles.herotitleSpan}>Digital</span>
+                <span className={styles.herotitleSpan}>Creative</span>
+                <div className={styles.herotitleSpanWrapper}>
+                <div className={styles.heroSubtitleWrapper}>
+                <span className={styles.herotitleSpan}>Studio</span>
+                  <h5 className={`${styles.heroSubtitle} hero-subtitle`}>
+                    <span>Агентство дизайна и стратегии с адаптивным подходом к решению задач.</span>
+                  </h5>
+                </div>
+
+                </div>
               </h1>
             </div>
-            
-            <div className={styles.heroSubtitleWrapper}>
-              <h5 className={`${styles.heroSubtitle} hero-subtitle`}>
-                <span>Агентство дизайна и стратегии с адаптивным подходом к решению задач.</span>
-              </h5>
-            </div>
+          
 
           </div>
         </div>

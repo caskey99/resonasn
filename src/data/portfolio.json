@@ -180,7 +180,7 @@
   ],
   "settings": {
     "primary_color": "#000000",
-    "logo": "/static/images/logo.png",
+    "logo": "/static/images/logo.svg",
     "logo_light": "/static/images/logo-white.png",
     "enable_preloader": true,
     "preloader_text": "Пожалуйста, подождите",

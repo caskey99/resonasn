@@ -35,6 +35,8 @@ export default function RootLayout({
 }) {
   const data = getPortfolioData();
 
+  console.log("data", data)
+
   return (
     <html lang="ru" className={basisGrotesque.variable}>
       <head>

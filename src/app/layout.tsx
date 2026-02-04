@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header/Header';
 import { getPortfolioData } from '@/lib/data';
 import SmoothScroll from '@/components/ui/SmoothScroll';
 import MagicCursor from '@/components/ui/MagicCursor';
+import Preloader from '@/components/ui/Preloader/Preloader';
 
 const basisGrotesque = localFont({
   src: [
@@ -47,6 +48,9 @@ export default function RootLayout({
         <link rel="stylesheet" href="/static/css/portfolio.css" />
       </head>
       <body>
+
+        <Preloader settings={data.settings} />
+        
         <SmoothScroll>
             {/* Хедер пока без анимации скролла, просто рендерим */}
             <MagicCursor />

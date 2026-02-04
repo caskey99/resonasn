@@ -5,6 +5,7 @@ import AboutSection from '@/components/features/AboutSection/AboutSection';
 import ShowcaseParallax from '@/components/features/ShowcaseParallax/ShowcaseParallax';
 import BlogPreview from '@/components/features/BlogPreview/BlogPreview';
 import PageNavigation from '@/components/layout/PageNavigation/PageNavigation';
+import Preloader from '@/components/ui/Preloader/Preloader';
 
 export default function Home() {
   const data = getPortfolioData();
@@ -17,6 +18,8 @@ export default function Home() {
       {/* Главный контейнер контента (как в base.html -> index.html) */}
       <div id="main-content" className="portfolio-page">
         <div id="main-page-content" className="content-max-width">
+
+          <Preloader settings={data.settings} />
           
           {/* 1. Сетка портфолио (уже содержит свои wrapper-ы) */}
           <PortfolioGrid items={data.portfolio} />

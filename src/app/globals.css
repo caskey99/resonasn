@@ -2,7 +2,7 @@
   --primary-color: #000000;
   --secondary-color: #171717;
   --text-color: #444444;
-  --bg-color: #ffffff;
+  --bg-color: #171717;
   --cursor-color: #999999;
   
   /* Шрифты будут инжектиться через Next.js Font Optimization */

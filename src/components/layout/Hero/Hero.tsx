@@ -46,7 +46,7 @@ export default function Hero() {
               </div>
             </Magnetic>
               <div className={`${styles.scrollText} button-text sticky left`}>
-                <span data-hover="Прокрутите">Прокрутите для просмотра</span>
+                <span data-hover="Прокрутите для просмотра">Прокрутите для просмотра</span>
               </div>
             </div>
           </div>

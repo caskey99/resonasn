@@ -45,7 +45,6 @@ export default function Header({ menuItems, settings }: HeaderProps) {
             <Link href="/">
               <img src={settings.logo} alt="Logo" className={styles.logoBlack} />
             </Link>
-
           </Magnetic>
         </div>
 
@@ -56,18 +55,15 @@ export default function Header({ menuItems, settings }: HeaderProps) {
               
               return (
                 <li key={index} className={styles.navItem}>
-                  <Magnetic strength={0.25}>
-                    <Link 
-                      href={item.url} 
-                      className={styles.navLink}
-                      onClick={(e) => hasSubmenu && e.preventDefault()}
-                      data-cursor="hover" // Добавили триггер для курсора
-                    >
-                      <span>{item.title}</span>
-                    </Link>
+                  <Link 
+                    href={item.url} 
+                    className={styles.navLink}
+                    onClick={(e) => hasSubmenu && e.preventDefault()}
+                    data-cursor="hover" 
+                  >
+                    <span data-hover={item.title}>{item.title}</span>
+                  </Link>
 
-                  </Magnetic>
-                  
                   {hasSubmenu && (
                     <ul className={styles.submenu}>
                       {item.submenu!.map((sub, subIndex) => (

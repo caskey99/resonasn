@@ -43,9 +43,13 @@ export default function Preloader({ settings }: PreloaderProps) {
       }
     });
 
+    // Функция триггера события (Start Hero Animation)
+    const triggerHeroAnimation = () => {
+       window.dispatchEvent(new CustomEvent('preloader-start-exit'));
+    };
+
     if (animationMode === 'full') {
       const counter = { val: 0 };
-      
       const TOTAL_TIME = 2.0;
       const WORD_SPEED = 0.15;
       const FREEZE_TIME = 0.8;
@@ -72,20 +76,15 @@ export default function Preloader({ settings }: PreloaderProps) {
       if (introListRef.current) {
         const items = introListRef.current.children;
         const totalWords = items.length;
-        
         const activeTime = TOTAL_TIME - FREEZE_TIME;
-        
         const steps = Math.floor(activeTime / WORD_SPEED);
 
         for (let i = 0; i < steps; i++) {
           const wordIndex = i % totalWords;
           const item = items[wordIndex];
-
           const startTime = i * WORD_SPEED;
           const endTime = (i + 1) * WORD_SPEED;
-
           tl.set(item, { opacity: 1 }, startTime);
-          
           if (i < steps) {
             tl.set(item, { opacity: 0 }, endTime);
           }
@@ -93,15 +92,16 @@ export default function Preloader({ settings }: PreloaderProps) {
 
         const lastWord = items[totalWords - 1];
         const freezeStart = steps * WORD_SPEED; 
-
         tl.set(lastWord, { opacity: 1 }, freezeStart);
       }
 
+      // Анимация поднятия шторки
       tl.to(containerRef.current, {
         yPercent: -100,
         duration: 0.8,
         ease: 'power4.inOut',
-        delay: 0
+        delay: 0,
+        onStart: triggerHeroAnimation // <--- ТРИГГЕР ЗДЕСЬ
       });
     }
 
@@ -113,11 +113,13 @@ export default function Preloader({ settings }: PreloaderProps) {
         gsap.set(introListRef.current.children[lastIndex], { opacity: 1 });
       }
 
+      // Анимация поднятия шторки (быстрая)
       tl.to(containerRef.current, {
         yPercent: -100,
         duration: 0.8,
         ease: 'power4.inOut',
-        delay: 0.1 
+        delay: 0.1,
+        onStart: triggerHeroAnimation // <--- ТРИГГЕР ЗДЕСЬ
       });
     }
 

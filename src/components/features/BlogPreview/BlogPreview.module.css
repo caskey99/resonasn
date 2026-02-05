@@ -1,79 +1,206 @@
 .section {
-  padding: 100px 0;
-  background-color: #eee;
+  padding: 120px 0;
+  background-color: #f0f0f0;
+  color: #1a1a1a;
 }
 
 .container {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 60px;
 }
 
 .header {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+  position: relative;
 }
 
-.subtitle {
-  font-size: 14px;
+.label {
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: #666;
   margin-bottom: 20px;
+  display: block;
 }
 
 .bigTitle {
-  font-size: 6vw;
-  line-height: 7vw;
-  font-weight: 500;
-  color: #000;
+  font-size: 7vw;
+  line-height: 0.9;
+  font-weight: 400;
   text-transform: uppercase;
   margin: 0;
+  letter-spacing: -0.03em;
+  position: relative;
+  
+  background-image: linear-gradient(to right, #1a1a1a 50%, rgba(26, 26, 26, 0.2) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0; 
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  will-change: background-position;
 }
 
-/* Post Styles */
+.circleIcon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #999;
+  border-radius: 50%;
+  margin-left: 30px;
+  vertical-align: middle;
+  position: relative;
+  top: -10px;
+}
+
+.blogList {
+  display: flex;
+  flex-direction: column;
+}
+
 .post {
-  border-top: 1px solid rgba(0,0,0,0.1);
-  padding: 40px 0;
+  border-top: 1px solid rgba(0,0,0,0.15);
+  height: 220px; 
+  padding: 0; 
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center; 
   position: relative;
+  transition: opacity 0.4s ease;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.post:last-child {
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+.postLeft {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; 
+}
+
+.postImageReveal {
+  width: 0px; 
+  height: 140px; 
+  margin-right: 0px; 
+  overflow: hidden;
+  position: relative;
+  will-change: width;
+}
+
+.postImage {
+  width: 220px; 
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  will-change: transform;
 }
 
 .postTitle {
-  font-size: 24px;
-  font-weight: 500;
-  color: #000;
-  width: 60%;
-  position: relative;
-  z-index: 5;
+  font-size: 3.5vw;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  
+  background-image: linear-gradient(to right, #1a1a1a 50%, rgba(26, 26, 26, 0.2) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0; 
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; 
+  will-change: background-position;
+  
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .postMeta {
-  width: 30%;
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 60px;
+  min-width: 30%; 
   font-size: 14px;
-  color: #888;
-}
-
-/* Footer текст */
-.footerText {
-  margin-top: 80px;
-  width: 40%;
-  font-size: 1.5rem;
-  line-height: 1.4;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  
+  background-image: linear-gradient(to right, #1a1a1a 50%, rgba(26, 26, 26, 0.2) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  will-change: background-position;
 }
 
-.buttonBox {
-  margin-top: 40px;
+.categories { color: inherit; }
+.date { color: inherit; min-width: 100px; text-align: right; }
+
+.footerText {
+  font-size: 24px;
+  line-height: 1.4;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-weight: 400;
+  
+  background-image: linear-gradient(to right, #1a1a1a 50%, rgba(26, 26, 26, 0.2) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0; 
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  will-change: background-position;
+}
+
+.footerButton {
+  padding: 15px 35px;
+  border: 1px solid rgba(0,0,0,0.2);
+  display: inline-block;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.footerButton:hover {
+  background-color: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
+.footerRow {
+  display: flex;
+  margin-top: 100px;
+  flex-wrap: wrap;
+}
+
+.footerCol { width: 45%; }
+
+@media (max-width: 1024px) {
+  .container { padding: 0 30px; }
+  .postTitle { font-size: 32px; }
+  .postMeta { min-width: auto; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .post { height: auto; padding: 30px 0; align-items: flex-start; }
+  .postLeft { align-items: flex-start; }
+  .postImageReveal { display: none; } 
 }
 
 @media (max-width: 768px) {
-  .container { padding: 0 20px; }
+  .section { padding: 80px 0; }
+  .bigTitle { font-size: 14vw; }
+  .circleIcon { display: none; }
   .post { flex-direction: column; }
-  .postTitle { width: 100%; margin-bottom: 10px; }
-  .postMeta { width: 100%; justify-content: flex-start; }
-  .footerText { width: 100%; }
+  .postLeft { width: 100%; margin-bottom: 20px; }
+  .postTitle { font-size: 28px; }
+  .postMeta { width: 100%; flex-direction: row; justify-content: space-between; color: #666; }
+  .footerCol { width: 100%; }
+  .footerText { font-size: 20px; }
 }

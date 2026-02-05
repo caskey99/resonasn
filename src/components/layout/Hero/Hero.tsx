@@ -10,6 +10,12 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
+  const images = {
+    digital: '/static/images/01hero.jpg',
+    creative: '/static/images/03hero.jpg',
+    studio: '/static/images/04hero.jpg',
+  };
+
   useGSAP(() => {
     tl.current = gsap.timeline({ paused: true });
 
@@ -17,29 +23,23 @@ export default function Hero() {
     const subtitle = `.${styles.heroSubtitle}`;
     const footer = `.${styles.heroFooter}`;
 
-    // 1. НАЧАЛЬНОЕ СОСТОЯНИЕ (Прозрачность + смещение)
-    // opacity: 0 критически важен, чтобы текст не "мелькал" до начала
     gsap.set(titleSpans, { y: '120%', opacity: 0 }); 
     gsap.set([subtitle, footer], { y: 30, opacity: 0 });
 
-    // 2. АНИМАЦИЯ
     tl.current
-      // Заголовок: выезжает и становится видимым
       .to(titleSpans, {
         y: '0%',
-        opacity: 1, // Плавное появление
+        opacity: 1,
         duration: 1.2,
         ease: 'power4.out',
         stagger: 0.1, 
       })
-      // Подзаголовок
       .to(subtitle, {
         y: 0,
         opacity: 1,
         duration: 1,
         ease: 'power3.out',
-      }, '-=1.0') // Overlap для плавности
-      // Футер
+      }, '-=1.0')
       .to(footer, {
         y: 0,
         opacity: 1,
@@ -49,30 +49,47 @@ export default function Hero() {
 
   }, { scope: containerRef });
 
+  const { contextSafe } = useGSAP({ scope: containerRef });
+  
+  const handleMouseMove = contextSafe((e: React.MouseEvent<HTMLSpanElement>) => {
+    const target = e.currentTarget;
+    const { left, top, width, height } = target.getBoundingClientRect();
+    
+    const xPos = ((e.clientX - left) / width - 0.5) * 100; 
+    const yPos = ((e.clientY - top) / height - 0.5) * 100;
+
+    const intensityX = 0.4; 
+    const intensityY = 0.6;
+
+    gsap.to(target, {
+      backgroundPosition: `${50 + xPos * intensityX}% ${50 + yPos * intensityY}%`,
+      duration: 1.0, 
+      ease: 'sine.out',
+    });
+  });
+
+  const handleMouseLeave = contextSafe((e: React.MouseEvent<HTMLSpanElement>) => {
+    gsap.to(e.currentTarget, {
+      backgroundPosition: '50% 50%',
+      duration: 1.2,
+      ease: 'sine.out',
+    });
+  });
+
   useEffect(() => {
     const playAnim = () => {
-        // Небольшая задержка (0.2s), чтобы шторка успела чуть приподняться
-        // Текст начнет выезжать прямо "из-под" поднимающейся тьмы
         gsap.delayedCall(0.1, () => {
             tl.current?.play();
         });
     };
-
-    // Слушаем наш новый триггер из Preloader
     const onPreloaderStartExit = () => playAnim();
-    
-    // Фолбек: если сайт загрузился без прелоадера (например, при hot reload или если он был удален)
     const checkLoaded = () => {
-      if (document.body.classList.contains('is-loaded')) {
+      if (typeof document !== 'undefined' && document.body.classList.contains('is-loaded')) {
         playAnim();
       }
     };
-
     window.addEventListener('preloader-start-exit', onPreloaderStartExit);
-    
-    // Проверка при маунте (для случаев без прелоадера)
     checkLoaded();
-
     return () => {
       window.removeEventListener('preloader-start-exit', onPreloaderStartExit);
     };
@@ -82,29 +99,56 @@ export default function Hero() {
     <div id="hero" className={styles.hero} ref={containerRef}>
       <div id="hero-styles" className={styles.heroStyles}>
         
-        {/* Caption Section */}
         <div id="hero-caption" className={`${styles.heroCaption} content-full-width parallax-scroll-caption`}>
           <div className={styles.inner}>
             
             <div className={styles.heroTitleWrapper}>
               <h1 className={`${styles.heroTitle} hero-title`}>
-                <span className={styles.herotitleSpan}>Digital</span>
-                <span className={styles.herotitleSpan}>Creative</span>
+                
+                {/* 1. DIGITAL */}
+                <span 
+                  className={`${styles.herotitleSpan} ${styles.revealText}`}
+                  style={{ backgroundImage: `url(${images.digital})` }}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Digital
+                </span>
+                
+                {/* 2. CREATIVE */}
+                <span 
+                  className={`${styles.herotitleSpan} ${styles.revealText}`}
+                  style={{ backgroundImage: `url(${images.creative})` }}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Creative
+                </span>
+                
                 <div className={styles.herotitleSpanWrapper}>
                   <div className={styles.heroSubtitleWrapper}>
-                    <span className={styles.herotitleSpan}>Studio</span>
+                    {/* 3. STUDIO */}
+                    <span 
+                      className={`${styles.herotitleSpan} ${styles.revealText}`}
+                      style={{ backgroundImage: `url(${images.studio})` }}
+                      onMouseMove={handleMouseMove}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      Studio
+                    </span>
+                    
                     <h5 className={`${styles.heroSubtitle} hero-subtitle`}>
                       <span>Агентство дизайна и стратегии с адаптивным подходом к решению задач.</span>
                     </h5>
                   </div>
                 </div>
+
               </h1>
             </div>
           
           </div>
         </div>
 
-        {/* Footer Section */}
         <div id="hero-footer" className={styles.heroFooter}>
           <div className="hero-footer-left">
             <div className={`${styles.scrollDown} button-wrap left scroll-down`}>
@@ -122,7 +166,7 @@ export default function Hero() {
           </div>
           
           <div className="hero-footer-right">
-            <div id="info-text" className={styles.heroFooterRight}>ИЗБРАННЫЕ КЕЙСЫ (04)</div>
+            <div id="info-text" className={styles.heroFooterRight}>Избранные кейсы (04)</div>
           </div>
         </div>
 

@@ -54,7 +54,7 @@
 
 .herotitleSpan {
   font-size: 9vw;
-  display: block; /* Важно для анимации появления */
+  display: block;
   width: fit-content;
   padding: 0 !important;
   /* line-height: 0.75; */
@@ -89,7 +89,6 @@
 }
 
 
-/* Footer (Scroll Down & Case Counter) */
 .heroFooter {
   position: absolute;
   bottom: 40px;
@@ -141,7 +140,6 @@
     color:#222;
 }
 
-/* Адаптив */
 @media (max-width: 1024px) {
   .heroTitle { font-size: 10vw; line-height: 11vw; }
   .inner, .heroFooter { padding: 0 40px; }
@@ -151,5 +149,45 @@
   .heroTitle { font-size: 14vw; line-height: 15vw; }
   .inner, .heroFooter { padding: 0 20px; }
   .heroSubtitle { font-size: 1rem; }
-  .scrollText { display: none; } /* Скрываем текст "Scroll" на мобильных */
+  .scrollText { display: none; }
+}
+
+.heroTitle {
+  font-size: 8vw;
+  display: flex;
+  flex-direction: column;
+  line-height: 9vw;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.herotitleSpan {
+  font-size: 9vw;
+  display: block;
+  width: fit-content;
+  padding: 0 !important;
+  margin-left: -0.05em;
+  
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100% 0%;
+  
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  color: #000;
+  transition: color 0.4s ease;
+  
+  cursor: default;
+  user-select: none; 
+}
+
+.revealText {
+  background-size: 150% auto; 
+}
+
+.revealText:hover {
+  color: transparent; 
 }

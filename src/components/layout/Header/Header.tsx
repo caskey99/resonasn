@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-// Убрали импорт gsap, он тут больше не нужен
 import styles from './Header.module.css';
 import { Settings, MenuItem } from '@/types/data';
 import Magnetic from '@/components/ui/Magnetic';

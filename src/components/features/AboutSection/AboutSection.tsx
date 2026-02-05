@@ -4,40 +4,32 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './AboutSection.module.css';
 import Magnetic from '@/components/ui/Magnetic';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const words = gsap.utils.toArray<HTMLElement>(`.${styles.hoverWord}`);
-
     words.forEach((word) => {
       const reveal = word.querySelector(`.${styles.hoverReveal}`) as HTMLElement;
-      const innerImg = word.querySelector(`.${styles.hoverRevealImgReal}`) as HTMLElement;
+      const innerImg = word.querySelector(`img`) || word.querySelector(`div[style*="background-image"]`) as HTMLElement;
 
       if (!reveal) return;
 
       gsap.set(reveal, { xPercent: -50, yPercent: -50 });
-      
       const xTo = gsap.quickTo(reveal, "x", { duration: 1.0, ease: "power3" });
       const yTo = gsap.quickTo(reveal, "y", { duration: 1.0, ease: "power3" });
 
       const handleMouseEnter = () => {
         reveal.classList.add(styles.active);
-
         gsap.fromTo(reveal, 
-          { 
-            clipPath: 'inset(0% 100% 0% 0%)', 
-            autoAlpha: 1 
-          },
-          { 
-            clipPath: 'inset(0% 0% 0% 0%)', 
-            duration: 0.6, 
-            ease: "expo.out", 
-            overwrite: 'auto'
-          }
+          { clipPath: 'inset(0% 100% 0% 0%)', autoAlpha: 1 },
+          { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.6, ease: "expo.out", overwrite: 'auto' }
         );
       };
 
@@ -62,13 +54,90 @@ export default function AboutSection() {
       word.addEventListener('mouseenter', handleMouseEnter);
       word.addEventListener('mouseleave', handleMouseLeave);
       word.addEventListener('mousemove', handleMouseMove);
-
-      return () => {
-        word.removeEventListener('mouseenter', handleMouseEnter);
-        word.removeEventListener('mouseleave', handleMouseLeave);
-        word.removeEventListener('mousemove', handleMouseMove);
-      };
     });
+
+
+    const column = container.current?.querySelector(`.${styles.column}`);
+    
+    if (column) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: column,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      const titles = column.querySelectorAll(`.${styles.subtitle} span`);
+      const texts = column.querySelectorAll(`.${styles.text}`);
+      const dividers = column.querySelectorAll(`.${styles.divider}`)
+      const btn = column.querySelector(`.${styles.buttonWrapper}`);
+
+      if (dividers.length > 0) {
+        tl.to(dividers, {
+          scaleX: 1,
+          duration: 1.2,
+          ease: "expo.out",
+          stagger: 0.2
+        }, 0); 
+      }
+
+      tl.fromTo(titles, 
+        { 
+          y: "110%", 
+          rotateX: -90, 
+          opacity: 0,
+          transformOrigin: "50% 100%" 
+        },
+        {
+          y: "0%",
+          rotateX: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          stagger: 0.2
+        }, 0.1
+      );
+
+      tl.fromTo(texts,
+        {
+          y: 50,
+          rotateX: 30, 
+          opacity: 0,
+          transformOrigin: "50% 0%" 
+        },
+        {
+          y: 0,
+          rotateX: 0,
+          opacity: 1,
+          duration: 1.0,
+          ease: "power3.out",
+          stagger: 0.2
+        }, 0.3 
+      );
+
+      if (btn) {
+        tl.fromTo(btn,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+          0.6
+        );
+      }
+    }
+
+    const outerDividers = container.current?.querySelectorAll(`.${styles.contentRow} > .${styles.divider}`);
+    if (outerDividers && outerDividers.length > 0) {
+      gsap.to(outerDividers, {
+        scaleX: 1,
+        duration: 1.5,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top 70%"
+        }
+      });
+    }
+
   }, { scope: container });
 
   return (
@@ -82,46 +151,52 @@ export default function AboutSection() {
               бизнесу
               <div className={styles.hoverReveal}> 
                 <div className={styles.hoverRevealInner}>
-                  <img 
-                    src="/static/images/studio01.jpg" 
-                    alt="Studio 01"
-                    className={styles.hoverRevealImgReal}
-                  />
+                  <img src="/static/images/studio01.jpg" alt="Studio 01" className={styles.hoverRevealImgReal} />
                 </div>
               </div>
             </span>
             {' '}внедрять<br />
-
             инновации и оставаться<br />
-
             актуальными для своих<br />
-
             <span className={`${styles.hoverWord}`}>
               клиентов
               <div className={styles.hoverReveal}>
                 <div className={styles.hoverRevealInner}>
-                  <img 
-                    src="/static/images/studio02.jpg" 
-                    alt="Studio 02"
-                    className={styles.hoverRevealImgReal}
-                  />
+                  <img src="/static/images/studio02.jpg" alt="Studio 02" className={styles.hoverRevealImgReal} />
                 </div>
               </div>
             </span>
             {' '}путем разработки<br />
-
             передовых цифровых<br />
-
             продуктов
           </h1>
           
           <hr className={styles.divider} />
           
           <div className={styles.grid}>
-            <div className={styles.columnEmpty}></div>
+            <div className={styles.columnEmpty}>
+
+                 <div className={styles.buttonWrapper} style={{ justifyContent: 'flex-start' }}>
+                <Link href="/about" className="ajax-link">
+                   <div className={`${styles.buttonText} button-text`}>
+                      <span data-hover="Узнать о нас">Узнать о нас</span>
+                   </div>
+                </Link>
+                <Magnetic strength={0.5}>
+                  <div className={`${styles.scrollIcon} icon-wrap parallax-wrap`} data-cursor="hover"> 
+                <div className="button-icon parallax-element">
+                  <i className="arrow-icon-down"></i>
+                </div>
+              </div>
+                </Magnetic>
+              </div>
+            </div>
+            
             <div className={styles.column}>
               <div style={{ marginBottom: 60 }}>
-                <h5 className={styles.subtitle}>Задача</h5>
+                <h5 className={styles.subtitle}>
+                  <span>Задача</span>
+                </h5>
                 <p className={styles.text}>
                   Создание цифровых решений, которые не только привлекательны визуально, но и эффективно решают бизнес-задачи. Мы фокусируемся на понимании потребностей пользователей и создании интуитивных интерфейсов.
                 </p>
@@ -129,25 +204,12 @@ export default function AboutSection() {
               </div>
 
               <div>
-                <h5 className={styles.subtitle}>Подход</h5>
+                <h5 className={styles.subtitle}>
+                  <span>Подход</span>
+                </h5>
                 <p className={styles.text}>
                   Наш процесс начинается с глубокого исследования и анализа. Мы используем современные методологии дизайна и разработки, чтобы создавать продукты, которые действительно работают.
                 </p>
-              </div>
-
-              <div className={styles.buttonWrapper}>
-                <Magnetic strength={0.3}>
-                    <div className={`${styles.iconWrap} icon-wrap`}>
-                        <div className={`${styles.buttonIcon} button-icon`}>
-                           <i className="fa fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </Magnetic>
-                <Link href="/about" className="ajax-link">
-                   <div className={`${styles.buttonText} button-text`}>
-                      <span data-hover="Узнать о нас">Узнать о нас</span>
-                   </div>
-                </Link>
               </div>
 
             </div>

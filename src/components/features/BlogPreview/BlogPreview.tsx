@@ -77,7 +77,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
         
         <div className={styles.header}>
           <span className={styles.label}>/ Будьте в курсе</span>
-          <h1 className={styles.bigTitle}>Читайте<br />Все новости<span className={styles.circleIcon}></span></h1>
+          <h1 className={styles.bigTitle}>Читайте<br />Все новости</h1>
         </div>
 
         <div className={styles.blogList}>

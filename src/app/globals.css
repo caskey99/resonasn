@@ -34,6 +34,41 @@ body {
 button, input, textarea, .cursor-pointer {
   cursor: none !important;
 }
+.magic-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border: 1px solid rgba(255, 255, 255, 0.8); /* Более яркая обводка */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  
+  /* Инверсия цвета */
+  mix-blend-mode: difference; 
+  background-color: transparent; 
+  
+  transition: opacity 0.3s ease; /* Плавное скрытие */
+}
+
+/* Текст внутри курсора */
+.cursor-text {
+  font-family: var(--font-basis), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff; /* Станет черным на белом фоне */
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  white-space: nowrap;
+}
 
 a {
   color: inherit;

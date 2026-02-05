@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './Hero.module.css';
+import Magnetic from '@/components/ui/Magnetic';
 
 export default function Hero() {
   return (
@@ -37,13 +38,15 @@ export default function Hero() {
         <div id="hero-footer" className={styles.heroFooter}>
           <div className="hero-footer-left">
             <div className={`${styles.scrollDown} button-wrap left scroll-down`}>
-              <div className={`${styles.scrollIcon} icon-wrap parallax-wrap`}>
+             <Magnetic strength={0.5}>
+              <div className={`${styles.scrollIcon} icon-wrap parallax-wrap`} data-cursor="hover"> {/* data-cursor="hover" чтобы курсор тоже реагировал заливкой */}
                 <div className="button-icon parallax-element">
-                  <i className="fa fa-angle-down"></i>
+                  <i className="arrow-icon-down"></i>
                 </div>
               </div>
+            </Magnetic>
               <div className={`${styles.scrollText} button-text sticky left`}>
-                <span data-hover="Прокрутите">Прокрутите</span>
+                <span data-hover="Прокрутите">Прокрутите для просмотра</span>
               </div>
             </div>
           </div>

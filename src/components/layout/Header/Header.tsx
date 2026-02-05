@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 // Убрали импорт gsap, он тут больше не нужен
 import styles from './Header.module.css';
 import { Settings, MenuItem } from '@/types/data';
+import Magnetic from '@/components/ui/Magnetic';
 
 interface HeaderProps {
   menuItems: MenuItem[];
@@ -41,9 +42,12 @@ export default function Header({ menuItems, settings }: HeaderProps) {
       <div className={styles.container}>
         
         <div className={styles.logo}>
-          <Link href="/" data-cursor="hover"> {/* Добавили data-cursor */}
-             <img src={settings.logo} alt="Logo" className={styles.logoBlack} />
-          </Link>
+          <Magnetic strength={0.25}>
+            <Link href="/">
+              <img src={settings.logo} alt="Logo" className={styles.logoBlack} />
+            </Link>
+
+          </Magnetic>
         </div>
 
         <nav className={styles.nav}>
@@ -53,14 +57,17 @@ export default function Header({ menuItems, settings }: HeaderProps) {
               
               return (
                 <li key={index} className={styles.navItem}>
-                  <Link 
-                    href={item.url} 
-                    className={styles.navLink}
-                    onClick={(e) => hasSubmenu && e.preventDefault()}
-                    data-cursor="hover" // Добавили триггер для курсора
-                  >
-                    <span>{item.title}</span>
-                  </Link>
+                  <Magnetic strength={0.25}>
+                    <Link 
+                      href={item.url} 
+                      className={styles.navLink}
+                      onClick={(e) => hasSubmenu && e.preventDefault()}
+                      data-cursor="hover" // Добавили триггер для курсора
+                    >
+                      <span>{item.title}</span>
+                    </Link>
+
+                  </Magnetic>
                   
                   {hasSubmenu && (
                     <ul className={styles.submenu}>
